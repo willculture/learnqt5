@@ -1,0 +1,7 @@
+通过g++编译qt
+gcc -std=c++11 cpp源码文件名 -o 编译后的文件名 -I(qt include目录) -L (qt
+lib目录) -l Qt5Core -fPIC
+
+
+比如：
+g++ -std=c++11 -o version version.cpp -I/home/paopao/Qt5.7.0/5.7/gcc_64/include/QtCore -I/home/paopao/Qt5.7.0/5.7/gcc_64/include -L/home/paopao/Qt5.7.0/5.7/gcc_64/lib -l Qt5Core -fPIC

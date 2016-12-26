@@ -1,0 +1,46 @@
+#!/bin/sh
+
+src=$1
+ofile=$2
+include=/home/paopao/Qt5.7.0/5.7/gcc_64/include
+lib=/home/paopao/Qt5.7.0/5.7/gcc_64/lib
+inpath=""
+libpatn=""
+
+#######
+inmode="$3,"
+#######
+libmode="$4,"
+###################
+i=1
+while true 
+do
+
+    split=`echo $inmode|cut -d "," -f$i`
+    if [ "$split" != "" ]
+	then
+		i=$((i+1))
+		inpath="$inpath -I$include/$split "
+	else
+	    break
+	fi
+
+
+done
+i=1
+
+while true
+do
+	sp2=`echo $libmode|cut -d "," -f$i`
+	if [ "$sp2" != "" ]
+	then
+		i=$((i+1))
+		libpath="$libpath -l $sp2"
+	else
+		break
+	fi
+done
+
+#echo $inpath
+#echo $libpath
+`g++ -std=c++11 $src -o $ofile $inpath -I$include -L$lib $libpath -Wl,-rpath=$lib -fPIC`

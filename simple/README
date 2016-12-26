@@ -1,0 +1,17 @@
+编译这个文件会出现一系列的找不到某个引用
+解决办法就是需要导入qtlib库
+export LD_LIBRARY_PATH=/home/paopao/Qt5.7.0/5.7/gcc_64/lib/
+
+执行命令：
+
+g++ -std=c++11 simple.cpp -o simple -I/home/paopao/Qt5.7.0/5.7/gcc_64/include/QtWidgets -I/home/paopao/Qt5.7.0/5.7/gcc_64/include -L/home/paopao/Qt5.7.0/5.7/gcc_64/lib -l Qt5Widgets -l Qt5Core -l Qt5Gui -fPIC
+
+2. 解决办法二：
+编译加入 -Wl,-rpath=(.|或者lib目录)
+
+g++ -std=c++11 simple.cpp -o simple
+-I/home/paopao/Qt5.7.0/5.7/gcc_64/include/QtWidgets
+-I/home/paopao/Qt5.7.0/5.7/gcc_64/include
+-L/home/paopao/Qt5.7.0/5.7/gcc_64/lib -l Qt5Widgets -l Qt5Core -l Qt5Gui
+-Wl,-rpath=/home/paopao/Qt5.7.0/5.7/gcc_64/lib -fPIC
+

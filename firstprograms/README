@@ -1,0 +1,14 @@
+编译问题：
+
+假如你的源文件中加入了Q_OBJECT等qt相关的宏，
+则必须使用moc命令来生成一个moc文件,然后在这个含有宏的文件中加入#include
+"moc文件", 然后再通过g++编译，这样就可以成功了
+
+比如：
+
+ main.cpp中含有 Q_OBJECT
+
+ 1. moc main.cpp -o main.moc
+ 2. 在 main.cpp中加入头文件main.moc #include "main.moc"
+ 3. 在g++进行编译
+ 4. 完成编译
